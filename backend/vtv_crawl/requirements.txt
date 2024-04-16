@@ -1,0 +1,10 @@
+Django == 5.0.3
+asgiref == 3.7.2
+django-rest-framework == 0.1.0
+djangorestframework == 3.15.0
+setuptools == 69.0.3
+tzdata == 2023.4
+wheel == 0.42.0
+pymongo == 3.13.0
+djongo
+djangorestframework-simplejwt == 5.3.1

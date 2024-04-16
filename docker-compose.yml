@@ -1,0 +1,38 @@
+version: '3.1'
+
+networks:
+  minu-network:
+    external:
+      name: manhdo-network
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    networks:
+      - minu-network
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+
+  manhdodb:
+    container_name: manhdodb
+    image: mongo
+    networks: 
+      - manhdo-network
+    volumes:
+      - ./database/init-db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./database/data-db/:/data/db/
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=manhdo
+      - MONGO_INITDB_ROOT_PASSWORD=manhdo
+      - MONGO_INITDB_DATABASE=manhdodb
+    ports: 
+      - "27019:27017"
+
+  vtvcrawlapi:
+    extends:
+      file: ./backend/backend-services.yml
+      service: vtvcrawlapi
