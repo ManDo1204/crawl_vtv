@@ -1,16 +1,13 @@
-version: '3.1'
-
 networks:
-  minu-network:
-    external:
-      name: manhdo-network
+    manhdo-network:
+      external: true
 
 services:
   nginx:
     container_name: nginx
     image: nginx
     networks:
-      - minu-network
+      - manhdo-network
     ports:
       - "80:80"
     volumes:

@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-ene*v*uron#z2d!^&b!yyz64s8i&o#1_qnx&pjj6g3=^7%xhfu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["manhdo.me"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'international',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +76,15 @@ WSGI_APPLICATION = 'vtv_crawl.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'manhdodb',
+        'CLIENT': {
+                'host': 'mongodb://manhdodb:27017',
+                'username': 'manhdo',
+                'password': 'manhdo',
+                'authSource': 'admin',
+                'authMechanism': 'SCRAM-SHA-1'
+            }
     }
 }
 
