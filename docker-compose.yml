@@ -13,10 +13,13 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on: 
+      - vtvcrawlapi
 
   manhdodb:
     container_name: manhdodb
     image: mongo
+    restart: always
     networks: 
       - manhdo-network
     volumes:
@@ -33,3 +36,12 @@ services:
     extends:
       file: ./backend/backend-services.yml
       service: vtvcrawlapi
+    depends_on:
+      - manhdodb
+
+  vtvscrapy:
+    extends:
+      file: ./backend/backend-services.yml
+      service: vtvscrapy
+    depends_on:
+      - manhdodb

@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'vtv_crawl.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'manhdodb',
+        'NAME': 'vtv_news_db_dev',
         'CLIENT': {
                 'host': 'mongodb://manhdodb:27017',
                 'username': 'manhdo',

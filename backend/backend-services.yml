@@ -8,4 +8,12 @@ services:
       - ${SOURCEROOT}/vtv_crawl/:/backend/
     command: manage.py runserver 0.0.0.0:8000
 
+  vtvscrapy:
+    container_name: vtvscrapy
+    networks:
+      - manhdo-network
+    volumes:
+      - ${SOURCEROOT}/vtv-scrapy/:/scrapy_app/
+    image: vtv-scrapy:1.0.0
+
   
