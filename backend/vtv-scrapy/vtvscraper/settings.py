@@ -102,7 +102,7 @@ if SCRAPY_MODE is None:
     raise ValueError("Must set SCRAPY_MODE environment var")
 
 if SCRAPY_MODE == "dev":
-    MONGO_URI = 'mongodb://manhdo:manhdo@manhdodb:27017/vtv_news_db_dev'
+    MONGO_URI = 'mongodb://manhdo:manhdo@manhdodb:27017/'
     MONGO_DB = 'vtv_news_db_dev'
     STORING_COLLECTION = 'thegioi_news'
 elif SCRAPY_MODE == "staging":

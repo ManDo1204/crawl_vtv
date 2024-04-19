@@ -16,7 +16,6 @@ class VtvSpider(scrapy.Spider):
     news_url_list = []
 
     def parse(self, response):
-        print('PARSE_________')
         # noibat news
         self.news_url_list.append(self.base_url + response.css('#noibatmuc .focus_left a::attr(href)').get())
         self.news_url_list.append(self.base_url + response.css('#noibatmuc .focus_left p.tlq a::attr(href)').get())
@@ -62,7 +61,6 @@ class VtvSpider(scrapy.Spider):
             yield response.follow(url=url, callback=self.parse_news_detail)
 
     def parse_news_detail(self, response):
-        print('PARSE NEWS DETAIL: hehehehe')
         news_item = NewsItem()
 
         url_split_array = ((response.url.replace(self.base_url, "").split("/")[2]).split(".")[0]).split("-")

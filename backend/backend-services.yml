@@ -14,6 +14,6 @@ services:
       - manhdo-network
     volumes:
       - ${SOURCEROOT}/vtv-scrapy/:/scrapy_app/
-    image: vtv-scrapy:1.0.0
+    image: vtv-scrapy-dev:1.0.0
 
   
