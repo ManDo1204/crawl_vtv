@@ -5,7 +5,15 @@ services:
       - manhdo-network
     image: backend-python-3-12:1.0.1
     volumes:
-      - ${SOURCEROOT}/backend/vtv_crawl/:/backend/
+      - ${SOURCEROOT}/vtv_crawl/:/backend/
     command: manage.py runserver 0.0.0.0:8000
+
+  vtvscrapy:
+    container_name: vtvscrapy
+    networks:
+      - manhdo-network
+    volumes:
+      - ${SOURCEROOT}/vtv-scrapy/:/scrapy_app/
+    image: vtv-scrapy-dev:1.0.0
 
   

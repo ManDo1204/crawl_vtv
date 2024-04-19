@@ -1,25 +1,25 @@
-version: '3.1'
-
 networks:
-  minu-network:
-    external:
-      name: manhdo-network
+    manhdo-network:
+      external: true
 
 services:
   nginx:
     container_name: nginx
     image: nginx
     networks:
-      - minu-network
+      - manhdo-network
     ports:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on: 
+      - vtvcrawlapi
 
   manhdodb:
     container_name: manhdodb
     image: mongo
+    restart: always
     networks: 
       - manhdo-network
     volumes:
@@ -36,3 +36,12 @@ services:
     extends:
       file: ./backend/backend-services.yml
       service: vtvcrawlapi
+    depends_on:
+      - manhdodb
+
+  vtvscrapy:
+    extends:
+      file: ./backend/backend-services.yml
+      service: vtvscrapy
+    depends_on:
+      - manhdodb
