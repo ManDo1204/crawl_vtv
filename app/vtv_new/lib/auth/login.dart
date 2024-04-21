@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vtv_new/auth/auth.bloc.dart';
 import 'package:vtv_new/auth/auth.model.dart';
 import 'package:vtv_new/auth/register.dart';
+import 'package:vtv_new/common/auth_token.model.dart';
 import 'package:vtv_new/home/home.dart';
 
 class Login extends StatefulWidget {
@@ -21,6 +23,7 @@ class _LoginState extends State<Login> {
   final pw_controller = TextEditingController();
 
   String error_message = '';
+  String access_token = '';
 
 
   @override
@@ -127,13 +130,21 @@ class _LoginState extends State<Login> {
     } else {
       request_data.email = email_controller.text;
       request_data.password = pw_controller.text;
-      await auth_bloc.login_bloc(request_data);
+      access_token = await auth_bloc.login_bloc(request_data);
+      if(access_token.isNotEmpty){
+        context.read<AuthData>().get_data(access_token);
+        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+      }
+      else {
+        if (mounted) {
+          setState(() {
+            error_message = 'Login fail!';
+          });
+        }
+      }
+      
       print('Login success!');
-      Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
     }
-
-
-    
   }
 
 

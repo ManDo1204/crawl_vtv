@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:vtv_new/auth/auth.model.dart';
 import 'package:http/http.dart' as http;
+import 'package:vtv_new/common/auth_token.model.dart';
 import 'package:vtv_new/environments.dart';
 
 class AuthService {

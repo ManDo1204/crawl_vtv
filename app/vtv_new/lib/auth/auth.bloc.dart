@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:vtv_new/auth/auth.model.dart';
 import 'package:vtv_new/auth/auth.service.dart';
+import 'package:vtv_new/common/auth_token.model.dart';
 
 class AuthBloc {
   const AuthBloc();

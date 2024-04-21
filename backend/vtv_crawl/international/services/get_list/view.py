@@ -18,7 +18,7 @@ class GetListNew(APIView):
             client = pymongo.MongoClient(connection_string)
             db = client['vtv_news_db_dev']
             collection_name = db['thegioi_news']
-            list_news = list(collection_name.find({}, {'_id': False}))
+            list_news = list(collection_name.find({}, {'_id': False}).sort('scraped_time',pymongo.DESCENDING))
 
         except Exception as e:
             return JsonResponse({
@@ -26,9 +26,6 @@ class GetListNew(APIView):
                 'error': e
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        return JsonResponse({
-            'status': 'Success',
-            'news': list_news
-            },
+        return JsonResponse(list_news,
             safe=False,
             status=status.HTTP_200_OK)
