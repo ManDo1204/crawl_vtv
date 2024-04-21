@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-ene*v*uron#z2d!^&b!yyz64s8i&o#1_qnx&pjj6g3=^7%xhfu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["manhdo.me"]
+# ALLOWED_HOSTS = ["manhdo.me"]
+ALLOWED_HOSTS = ["manhdo.me", "192.168.2.31"]
 
 
 # Application definition
